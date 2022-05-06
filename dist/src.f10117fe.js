@@ -134,6 +134,10 @@ var User = function () {
     return this.data[propName];
   };
 
+  User.prototype.set = function (update) {
+    Object.assign(this.data, update);
+  };
+
   return User;
 }();
 
@@ -150,6 +154,9 @@ var User_1 = require("./models/User");
 var user = new User_1.User({
   name: 'myname',
   age: 20
+});
+user.set({
+  age: 999
 });
 console.log(user.get('name'));
 console.log(user.get('age'));
@@ -181,7 +188,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49609" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49926" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
