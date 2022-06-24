@@ -2340,13 +2340,6 @@ var User = function () {
     this.attributes = new Attributes_1.Attributes(attrs);
   }
 
-  Object.defineProperty(User.prototype, "get", {
-    get: function get() {
-      return this.attributes.get;
-    },
-    enumerable: false,
-    configurable: true
-  });
   Object.defineProperty(User.prototype, "on", {
     get: function get() {
       return this.events.on;
@@ -2361,6 +2354,19 @@ var User = function () {
     enumerable: false,
     configurable: true
   });
+  Object.defineProperty(User.prototype, "get", {
+    get: function get() {
+      return this.attributes.get;
+    },
+    enumerable: false,
+    configurable: true
+  });
+
+  User.prototype.set = function (update) {
+    this.attributes.set(update);
+    this.events.trigger('change');
+  };
+
   return User;
 }();
 
@@ -2380,9 +2386,11 @@ var user = new User_1.User({
 });
 console.log(user.get('name'));
 user.on('change', function () {
-  console.log('User was changed');
+  console.log('User was changed, we probably need to update some HTML');
 });
-user.trigger('change');
+user.set({
+  name: 'New name'
+});
 },{"./models/User":"src/models/User.ts"}],"../../.npm-global/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -2411,7 +2419,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49386" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53895" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
