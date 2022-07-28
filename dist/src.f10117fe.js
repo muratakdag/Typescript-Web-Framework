@@ -127,27 +127,24 @@ exports.UserForm = void 0;
 
 var UserForm = function () {
   function UserForm(parent, model) {
+    var _this = this;
+
     this.parent = parent;
     this.model = model;
+
+    this.onSetAgeClick = function () {
+      _this.model.setRandomAge();
+    };
   }
 
   UserForm.prototype.eventsMap = function () {
     return {
-      'click:button': this.onButtonClick,
-      'mouseenter:h1': this.onHeaderHover
+      'click:.set-age': this.onSetAgeClick
     };
   };
 
-  UserForm.prototype.onHeaderHover = function () {
-    console.log('H1 was hovered over');
-  };
-
-  UserForm.prototype.onButtonClick = function () {
-    console.log('Hi there');
-  };
-
   UserForm.prototype.template = function () {
-    return "\n      <div>\n        <h1>User Form</h1>\n        <div>User name: " + this.model.get('name') + "</div>\n        <div>User age: " + this.model.get('age') + "</div>\n        <input />\n        <button>Click Me</button>\n      </div>\n    ";
+    return "\n      <div>\n        <h1>User Form</h1>\n        <div>User name: " + this.model.get('name') + "</div>\n        <div>User age: " + this.model.get('age') + "</div>\n        <input />\n        <button>Click Me</button>\n        <button class=\"set-age\">Set Random Age</button>\n      </div>\n    ";
   };
 
   UserForm.prototype.bindEvents = function (fragment) {
@@ -2557,8 +2554,9 @@ var User = function (_super) {
   };
 
   User.prototype.setRandomAge = function () {
+    var age = Math.round(Math.random() * 100);
     this.set({
-      age: Math.round(Math.random() * 100)
+      age: age
     });
   };
 
@@ -2611,7 +2609,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57400" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57847" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
