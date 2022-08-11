@@ -132,6 +132,10 @@ var View = function () {
     this.bindModel();
   }
 
+  View.prototype.eventsMap = function () {
+    return {};
+  };
+
   View.prototype.bindModel = function () {
     var _this = this;
 
@@ -2692,7 +2696,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59878" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60610" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
